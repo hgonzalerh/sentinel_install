@@ -18,7 +18,7 @@
     - name: Install the Sentinel package idempotently
       ansible.windows.win_package:
         # The filename we pulled from installer_url
-        path: "C:\{{ (installer_url | urlsplit('path') | split('/'))[-1] }}"
+        path: 'C:\{{ (installer_url | urlsplit("path") | split("/"))[-1] }}'
         # example: C:\SentinelInstaller_windows_64bit_v23_4_4_223.msi
         arguments:  /quiet SITE_TOKEN={{ installer_token }}
         state: present
