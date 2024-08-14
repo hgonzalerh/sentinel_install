@@ -20,5 +20,5 @@
         # The filename we pulled from installer_url
         path: "C:/{{ (installer_url | urlsplit('path') | split('/'))[-1] }}"
         # example: C:\SentinelInstaller_windows_64bit_v23_4_4_223.msi
-        arguments:  /quiet SITE_TOKEN={{ installer_token }}
+        arguments:  /quiet SITE_TOKEN='{{ installer_token }}'
         state: present
