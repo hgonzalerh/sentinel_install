@@ -1,0 +1,20 @@
+- name: Install/upgrade the Sentiner Agent on Windows
+  hosts: windows
+  gather_facts: false
+  vars:
+    # Inject the following as extra variables
+    # installer_token:
+    # installer_url: 
+  tasks:
+    - name: Pull the installer from an artifact repository
+      ansible.windows.win_get_url:
+        url: "{{ installer_url }}"
+        dest: "c:/"
+
+    - name: Install the Sentinel package idempotently
+      ansible.windows.win_package:
+        # The filename we pulled from installer_url
+        path: "c:/{{ (installer_url | urlsplit('path') | split('/'))[-1] }}"
+        # example: C:\SentinelInstaller_windows_64bit_v23_4_4_223.msi
+        arguments:  /quiet SITE_TOKEN={{ installer_token }}'
+        state: present
