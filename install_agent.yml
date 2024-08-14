@@ -1,4 +1,4 @@
-- name: Install/upgrade the Sentiner Agent on Windows
+- name: Install/upgrade the Sentinel Agent on Windows
   hosts: windows
   gather_facts: false
   vars:
