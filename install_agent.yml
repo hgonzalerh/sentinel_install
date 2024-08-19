@@ -18,3 +18,9 @@
         # example: C:\SentinelInstaller_windows_64bit_v23_4_4_223.msi
         arguments:  /quiet SITE_TOKEN={{ installer_token }}
         state: present
+        
+    - name: Remove the installer to save disk space
+      ansible.windows.win_file:    
+        path: 'C:\{{ (installer_url | urlsplit("path") | split("/"))[-1] }}'
+        state: absent
+        
